@@ -71,20 +71,23 @@ function App() {
         </div>
 
         {playing ? (
-          <button onClick={() => setPlaying(false)} className='px-4 py-2 text-lg rounded bg-blue-500 text-white hover:bg-blue-600 transition-colors duration-150'>⏸ Pause</button>
+          <button onClick={() => setPlaying(false)} className='px-4 py-2 text-lg rounded bg-blue-500 text-white hover:bg-blue-600 transition-colors duration-150'>⏸ Stop</button>
         ) : (
           <button onClick={handlePlayClick} disabled={playing} className='px-4 py-2 text-lg rounded bg-blue-500 text-white hover:bg-blue-600 transition-colors duration-150'>
-            {reachedEnd ? '🔄 Restart' : '▶️ Play'}
+            {reachedEnd ? '🔄 Restart' : '▶️ Start'}
           </button>
         )}
       </main>
 
 
       <footer className="flex justify-center items-center py-3 bg-gray-100 text-gray-700 text-sm mt-auto">
-        <div className="flex gap-6 px-4 py-2 rounded shadow-sm bg-white">
-          <span className="font-medium">Location:</span> {current.latitude}, {current.longitude}
-          <span className="font-medium">Timestamp:</span> {new Date(current.timestamp).toLocaleTimeString(['en-US'], { hour: '2-digit', minute: '2-digit' })}
-
+        <div className="flex flex-col sm:flex-row sm:gap-6 gap-2 px-4 py-2 rounded shadow-sm bg-white w-full max-w-md mx-auto text-center">
+          <div className="w-full sm:w-auto flex-1">
+            <span className="font-medium">Location:</span> <span className="break-all">{current.latitude}, {current.longitude}</span>
+          </div>
+          <div className="w-full sm:w-auto flex-1">
+            <span className="font-medium">Time:</span> {new Date(current.timestamp).toLocaleTimeString(['en-US'], { hour: '2-digit', minute: '2-digit' })}
+          </div>
         </div>
       </footer>
     </div>
